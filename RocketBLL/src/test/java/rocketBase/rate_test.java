@@ -61,10 +61,11 @@ public class rate_test {
 		// r: rate
 		//public static double getPayment(double r, double n, double p, double f, boolean t)
 		
-		System.out.println("getPayment Test1:" + rateBill.getPayment(3.5,60,10000,15000,false));
-		System.out.println("getPayment Test2:" + rateBill.getPayment(5,120.0,1000,15000,false));
-		System.out.println("getPayment Test3:" + rateBill.getPayment(3,120.0,10000,15000,true));
-		System.out.println("getPayment Test4:" + rateBill.getPayment(4,60,10000,150000,true));
+		System.out.println("getPayment Test1:" + rateBill.getPayment(4,360,300000,0,false));
+		System.out.println("getPayment Test2:" + rateBill.getPayment(4,360,300000,60000,false));
+		System.out.println("getPayment Test4:" + rateBill.getPayment(4,360,300000,0,true));
+		System.out.println("getPayment Test3:" + rateBill.getPayment(4,360,300000,60000,true));
+
 	}
 
 }

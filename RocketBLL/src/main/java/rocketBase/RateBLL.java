@@ -12,7 +12,7 @@ public class RateBLL {
 	private static RateDAL _RateDAL = new RateDAL();
 	private static double OneRate;
 
-	static double getRate(int GivenCreditScore) throws RateException{
+	public static double getRate(int GivenCreditScore) throws RateException{
 		// TODO - RocketBLL RateBLL.getRate - make sure you throw any exception
 
 		// Call RateDAL.getAllRates... this returns an array of rates
