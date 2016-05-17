@@ -9,7 +9,7 @@ import rocketData.LoanRequest;
 
 public class RocketHub extends Hub {
 
-	private RateBLL _RateBLL = new RateBLL();
+	private RateBLL RateBLL = new RateBLL();
 	
 	public RocketHub(int port) throws IOException {
 		super(port);
@@ -33,7 +33,24 @@ public class RocketHub extends Hub {
 			//	Determine if payment, call RateBLL.getPayment
 			//	
 			//	you should update lq, and then send lq back to the caller(s)
+			//message.appendText(message + "\n");
+			try {
+				
+				double r = RateBLL.getRate(lq.getiCreditScore());
+				double n = lq.getiTerm();
+				double p = lq.getdAmount();
+				double f = p*Math.pow((1+r/100), n);
+				boolean t;
+				double result = RateBLL.getPayment( r,  n,  p,  f,  t);
+				lq.setdPayment(result);
 			
+			} catch (Exception e){
+				throw e;
+				System.out.println("Error!");
+				//message.appendText("Error-Invaid Input");
+				sendToAll("Error");
+			}
+					
 			sendToAll(lq);
 		}
 	}

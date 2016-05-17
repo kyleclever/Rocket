@@ -48,6 +48,15 @@ public class RateBLL {
 	// TODO - RocketBLL RateBLL.getPayment
 	// how to use:
 	// https://poi.apache.org/apidocs/org/apache/poi/ss/formula/functions/FinanceLib.html
+	
+	// p: present value
+	// f: future value
+	// n: number of periods
+	// y: payment (in each period)
+	// r: rate
+	
+//	Present value of an amount given the number of future payments, rate, amount of individual payment, future value and boolean value indicating whether payments are due at the beginning of period (false => payments are due at end of period)
+//	Methods inherited from class java.lang.Object
 	public static double getPayment(double r, double n, double p, double f, boolean t) {
 		return FinanceLib.pmt(r, n, p, f, t);
 	}
