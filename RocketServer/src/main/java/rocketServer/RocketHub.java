@@ -41,8 +41,8 @@ public class RocketHub extends Hub {
 				double p = lq.getdAmount();
 				double f = p*Math.pow((1+r/100), n);
 				boolean t;
-				double result = RateBLL.getPayment( r,  n,  p,  f,  t);
-				lq.setdPayment(result);
+				double totalRepayment = RateBLL.getPayment( r,  n,  p,  f,  t);
+				lq.setdPayment(totalRepayment);
 			
 			} catch (Exception e){
 				throw e;
