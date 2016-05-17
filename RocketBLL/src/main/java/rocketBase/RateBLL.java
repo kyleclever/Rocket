@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.poi.ss.formula.functions.*;
 
+import exceptions.RateException;
 import rocketDomain.RateDomainModel;
 
 public class RateBLL {
@@ -11,7 +12,7 @@ public class RateBLL {
 	private static RateDAL _RateDAL = new RateDAL();
 	private static double OneRate;
 
-	static double getRate(int GivenCreditScore) {
+	static double getRate(int GivenCreditScore) throws RateException{
 		// TODO - RocketBLL RateBLL.getRate - make sure you throw any exception
 
 		// Call RateDAL.getAllRates... this returns an array of rates
@@ -21,24 +22,28 @@ public class RateBLL {
 		// a comparator... or by using an OrderBy statement in the HQL
 
 		// exception.. if so, send the exception back to the client
-		try {
-			ArrayList<RateDomainModel> rates = RateDAL.getAllRates();
 
-			for (RateDomainModel r : rates) {
-				if (GivenCreditScore >= r.getiMinCreditScore()) {
-					OneRate = r.getdInterestRate();
-				}
+		ArrayList<RateDomainModel> rates = RateDAL.getAllRates();
+
+		if (GivenCreditScore < rates.get(0).getiMinCreditScore()) {
+		 System.out.println("Sorry, you have a too low credit score");
+		 throw new RateException(null);
+		 }
+		
+		
+
+		for (RateDomainModel r : rates) {
+			if (GivenCreditScore >= r.getiMinCreditScore()) {
+				OneRate = r.getdInterestRate();
 			}
-
-		} catch (Exception e) {
-			System.out.println("No Rate Found!");
-
 		}
-		// TODO - RocketBLL RateBLL.getRate
-		// obviously this should be changed to return the determined rate
+	
+	// TODO - RocketBLL RateBLL.getRate
+	// obviously this should be changed to return the determined rate
 		return OneRate;
-
 	}
+
+	
 
 	// TODO - RocketBLL RateBLL.getPayment
 	// how to use:
