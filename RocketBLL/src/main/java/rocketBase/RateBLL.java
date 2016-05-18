@@ -26,7 +26,7 @@ public class RateBLL {
 		ArrayList<RateDomainModel> rates = RateDAL.getAllRates();
 
 		if (GivenCreditScore < rates.get(0).getiMinCreditScore()) {
-		 System.out.println("Sorry, you have a too low credit score");
+		 System.out.println("Sorry, you have a too low credit score");		 
 		 throw new RateException(null);
 		 }
 		
@@ -34,7 +34,7 @@ public class RateBLL {
 
 		for (RateDomainModel r : rates) {
 			if (GivenCreditScore >= r.getiMinCreditScore()) {
-				OneRate = r.getdInterestRate()/1200;
+				OneRate = r.getdInterestRate();
 			}
 		}
 	

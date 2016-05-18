@@ -27,9 +27,19 @@ public class rate_test {
 		int subject5 = 700;
 		int subject6 = 720;
 		int subject7 = 800;
-		int subject8 = 888;
+		int subject8 = 888;	
+			
 
 		try {
+			
+//			assertTrue(RateBLL.getRate(subject1)== 5);
+//			assertTrue(RateBLL.getRate(subject2)== 5);
+//			assertTrue(RateBLL.getRate(subject3)== 4.5);
+//			assertTrue(RateBLL.getRate(subject4)== 4.5);
+//			assertTrue(RateBLL.getRate(subject5)== 4);
+//			assertTrue(RateBLL.getRate(subject6)== 4);
+//			assertTrue(RateBLL.getRate(subject7)== 3.5);
+//			assertTrue(RateBLL.getRate(subject8)== 3.5);						
 			System.out.println("The interetset rate of subject1 is"+RateBLL.getRate(subject1));
 			System.out.println("The interetset rate of subject2 is"+RateBLL.getRate(subject2));
 			System.out.println("The interetset rate of subject3 is"+RateBLL.getRate(subject3));
@@ -62,11 +72,16 @@ public class rate_test {
 		// r: rate
 		//public static double getPayment(double r, double n, double p, double f, boolean t)
 		
-		System.out.println("getPayment Test1:" + RateBLL.getPayment(0.04/12,360,300000,0,false));
-		System.out.println("getPayment Test2:" + RateBLL.getPayment(4,360,300000,60000,false));
-		System.out.println("getPayment Test4:" + RateBLL.getPayment(4,360,300000,0,true));
-		System.out.println("getPayment Test3:" + RateBLL.getPayment(4,360,300000,60000,true));
-
+		double payment1 = RateBLL.getPayment(0.04/12,360,300000,0,false);		
+		double rounded1 = -1*(Math.round(payment1*100.0)/100.0);
+		
+		double payment2 = RateBLL.getPayment(0.04/12,360,300000,0,true);		
+		double rounded2 = -1*(Math.round(payment2*100.0)/100.0);
+		
+		System.out.println("getPayment Test1:" + rounded1);		
+		System.out.println("getPayment Test2:" + rounded2);		
+		//assertTrue(rounded1== 1432.25);
+		//assertTrue(rounded2== 833.33);
 	}
 
 }

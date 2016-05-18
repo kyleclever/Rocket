@@ -60,11 +60,13 @@ public class MortgageController {
 	@FXML
 	private Label expensesLabel;
 	@FXML
-	private Label errorMessageLabel;
+	public Label errorMessageLabel;
+	@FXML
+	private Label interestRate;
 
 	public int term;
 
-	ObservableList<String> termList = FXCollections.observableArrayList("15 years", "30 years");
+	ObservableList<String> termList = FXCollections.observableArrayList("Payback in 15 years", "Payback in 30 years");
 
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
@@ -78,7 +80,7 @@ public class MortgageController {
 	// assign the value of terms
 	@FXML
 	private void termChoice() {
-		if (cmbTerm.getValue().equals("15 years")) {
+		if (cmbTerm.getValue().equals("Payback in 15 years")) {
 			// 15 years- repay 15*12 periods
 			term = 15 * 12;
 		} else {
@@ -125,6 +127,12 @@ public class MortgageController {
 
 		// send lq as a message to RocketHub
 		mainApp.messageSend(lq);
+		
+		// clear the table
+		errorMessageLabel.setText("");
+		ibiMortgagePaymentLabel.setText("");
+		interestRate.setText("");
+		
 	}
 
 	public void HandleLoanRequestDetails(LoanRequest lRequest) {
@@ -136,14 +144,21 @@ public class MortgageController {
 
 		double income = Double.parseDouble(txtIncome.getText());
 		double expense = Double.parseDouble(txtExpenses.getText());
-		double PMT = lRequest.getdPayment();
+		
+		double PMT = lRequest.getdPayment();			
+		double roundedPMT = (Math.round(PMT*100.0)/100.0);		
+		
+		double Rate = lRequest.getdRate();
 
 		// determining if one can afford
-		if (PMT >= income * 0.28 || PMT >= (income * 0.36 - expense)) {
-			errorMessageLabel.setText("Oh no! House Cost TOO High!!!");
+		if (roundedPMT >= income * 0.28 || roundedPMT >= (income * 0.36 - expense)) {
+			errorMessageLabel.setText("Oh no!" +" House cost too high :(");
 		} else {
-			String text = Double.toString(PMT);
-			ibiMortgagePaymentLabel.setText(text);
+			String textPMT = Double.toString(roundedPMT);
+			ibiMortgagePaymentLabel.setText("$ "+textPMT);
+			
+			String textRate = Double.toString(Rate);
+			interestRate.setText(textRate+"%");
 		}
 
 	}

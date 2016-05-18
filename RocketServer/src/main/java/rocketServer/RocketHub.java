@@ -36,7 +36,7 @@ public class RocketHub extends Hub {
 			
 			try {
 
-				double r = rocketBase.RateBLL.getRate(lq.getiCreditScore());
+				double r = rocketBase.RateBLL.getRate(lq.getiCreditScore())/1200;
 				double n = lq.getiTerm();
 				double p = lq.getdAmount()-lq.getiDownPayment();
 				//double f = p * Math.pow((1 + r / 100), n);

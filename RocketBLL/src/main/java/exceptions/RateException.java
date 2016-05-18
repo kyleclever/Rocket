@@ -2,6 +2,7 @@ package exceptions;
 
 import rocketDomain.RateDomainModel;
 
+
 public class RateException extends Exception {
 	
 	// TODO - RocketBLL RateException - RateDomainModel should be an attribute
