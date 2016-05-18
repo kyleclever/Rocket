@@ -1,6 +1,6 @@
 package rocket.app.view;
 
-import java.awt.TextField;
+
 
 import eNums.eAction;
 import exceptions.RateException;
@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import rocket.app.MainApp;
 import rocketBase.RateBLL;
 import rocketCode.Action;
@@ -39,7 +40,9 @@ public class MortgageController {
 	@FXML
 	private TextField txtCreditScore;
 	@FXML
-	private TextField txtHouseCost;
+	private TextField txtHouseCost;	
+	@FXML
+	private TextField txtdownPayment;
 	@FXML
 	private ComboBox<String> cmbTerm;
 	@FXML
@@ -100,8 +103,8 @@ public class MortgageController {
 
 		int creditScore = Integer.parseInt(txtCreditScore.getText());
 		double rate = RateBLL.getRate(creditScore);
-		double presentValue = Double.parseDouble(txtHouseCost.getText());
-		//double futureValue = presentValue * Math.pow((1 + rate / 100), term);
+		double amount = Double.parseDouble(txtHouseCost.getText());
+		double downPayment = Double.parseDouble(txtdownPayment.getText());
 
 		// set rate
 		lq.setdRate(rate);
@@ -110,14 +113,13 @@ public class MortgageController {
 		lq.setiTerm(term);
 
 		// set amount
-		lq.setdAmount(presentValue);
+		lq.setdAmount(amount);
 
 		// set credit score
 		lq.setiCreditScore(creditScore);
 
 		// set iDownPayment
-		//double dPayment = RateBLL.getPayment(rate, term, presentValue, futureValue, false);
-		//lq.setiDownPayment(dPayment / term);
+		lq.setiDownPayment(downPayment);
 
 		a.setLoanRequest(lq);
 
@@ -134,13 +136,13 @@ public class MortgageController {
 
 		double income = Double.parseDouble(txtIncome.getText());
 		double expense = Double.parseDouble(txtExpenses.getText());
-		double downPayment = lRequest.getiDownPayment();
+		double PMT = lRequest.getdPayment();
 
 		// determining if one can afford
-		if (downPayment >= income * 0.28 || downPayment >= (income * 0.36 - expense)) {
+		if (PMT >= income * 0.28 || PMT >= (income * 0.36 - expense)) {
 			errorMessageLabel.setText("Oh no! House Cost TOO High!!!");
 		} else {
-			String text = Double.toString(downPayment);
+			String text = Double.toString(PMT);
 			ibiMortgagePaymentLabel.setText(text);
 		}
 

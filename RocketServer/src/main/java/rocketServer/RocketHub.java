@@ -38,12 +38,12 @@ public class RocketHub extends Hub {
 
 				double r = rocketBase.RateBLL.getRate(lq.getiCreditScore());
 				double n = lq.getiTerm();
-				double p = lq.getdAmount();
-				double f = p * Math.pow((1 + r / 100), n);
+				double p = lq.getdAmount()-lq.getiDownPayment();
+				//double f = p * Math.pow((1 + r / 100), n);
+				double f = 0;
 				boolean t = false;
-				double totalRepayment = rocketBase.RateBLL.getPayment(r, n, p, f, t);
-				lq.setdPayment(totalRepayment);
-				lq.setiDownPayment(totalRepayment/n);
+				double PMT = rocketBase.RateBLL.getPayment(r, n, p, f, t);
+				lq.setdPayment(Math.abs(PMT));				
 
 			} catch (Exception e) {
 				// System.out.println("Error!");

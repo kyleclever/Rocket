@@ -34,7 +34,7 @@ public class RateBLL {
 
 		for (RateDomainModel r : rates) {
 			if (GivenCreditScore >= r.getiMinCreditScore()) {
-				OneRate = r.getdInterestRate();
+				OneRate = r.getdInterestRate()/1200;
 			}
 		}
 	

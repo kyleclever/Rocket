@@ -62,7 +62,7 @@ public class rate_test {
 		// r: rate
 		//public static double getPayment(double r, double n, double p, double f, boolean t)
 		
-		System.out.println("getPayment Test1:" + RateBLL.getPayment(4,360,300000,0,false));
+		System.out.println("getPayment Test1:" + RateBLL.getPayment(0.04/12,360,300000,0,false));
 		System.out.println("getPayment Test2:" + RateBLL.getPayment(4,360,300000,60000,false));
 		System.out.println("getPayment Test4:" + RateBLL.getPayment(4,360,300000,0,true));
 		System.out.println("getPayment Test3:" + RateBLL.getPayment(4,360,300000,60000,true));
