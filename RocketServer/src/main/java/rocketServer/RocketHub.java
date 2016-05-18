@@ -33,7 +33,7 @@ public class RocketHub extends Hub {
 			// Determine if payment, call RateBLL.getPayment
 			//
 			// you should update lq, and then send lq back to the caller(s)
-			// message.appendText(message + "\n");
+			
 			try {
 
 				double r = rocketBase.RateBLL.getRate(lq.getiCreditScore());
@@ -42,7 +42,8 @@ public class RocketHub extends Hub {
 				double f = p * Math.pow((1 + r / 100), n);
 				boolean t = false;
 				double totalRepayment = rocketBase.RateBLL.getPayment(r, n, p, f, t);
-				lq.setdPayment(totalRepayment/n);
+				lq.setdPayment(totalRepayment);
+				lq.setiDownPayment(totalRepayment/n);
 
 			} catch (Exception e) {
 				// System.out.println("Error!");
