@@ -8,7 +8,7 @@ public class LoanRequest implements Serializable {
 	private double dRate;
 	private double dAmount;
 	private int iCreditScore;
-	private int iDownPayment;
+	private double iDownPayment;
 	private double dPayment;
 	private double Income;
 	private double Expenses;
@@ -58,18 +58,17 @@ public class LoanRequest implements Serializable {
 	public void setiCreditScore(int iCreditScore) {
 		this.iCreditScore = iCreditScore;
 	}
-	public int getiDownPayment() {
+	public double getiDownPayment() {
 		return iDownPayment;
 	}
-	public void setiDownPayment(int iDownPayment) {
-		this.iDownPayment = iDownPayment;
+	public void setiDownPayment(double d) {
+		this.iDownPayment = d;
 	}
 	public double getdPayment() {
 		return dPayment;
 	}
 	public void setdPayment(double dPayment) {
 		this.dPayment = dPayment;
-	}
-	
+	}	
 	
 }

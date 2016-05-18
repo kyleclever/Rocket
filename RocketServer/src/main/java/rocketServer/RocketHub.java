@@ -42,7 +42,7 @@ public class RocketHub extends Hub {
 				double f = p * Math.pow((1 + r / 100), n);
 				boolean t = false;
 				double totalRepayment = rocketBase.RateBLL.getPayment(r, n, p, f, t);
-				lq.setdPayment(totalRepayment);
+				lq.setdPayment(totalRepayment/n);
 
 			} catch (Exception e) {
 				// System.out.println("Error!");

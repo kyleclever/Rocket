@@ -30,14 +30,15 @@ public class rate_test {
 		int subject8 = 888;
 
 		try {
-			System.out.println("The interetset rate of subject1 is"+rateBill.getRate(subject1));
-			System.out.println("The interetset rate of subject2 is"+rateBill.getRate(subject2));
-			System.out.println("The interetset rate of subject3 is"+rateBill.getRate(subject3));
-			System.out.println("The interetset rate of subject4 is"+rateBill.getRate(subject4));
-			System.out.println("The interetset rate of subject5 is"+rateBill.getRate(subject5));
-			System.out.println("The interetset rate of subject6 is"+rateBill.getRate(subject6));
-			System.out.println("The interetset rate of subject7 is"+rateBill.getRate(subject7));
-			System.out.println("The interetset rate of subject8 is"+rateBill.getRate(subject8));
+			System.out.println("The interetset rate of subject1 is"+RateBLL.getRate(subject1));
+			System.out.println("The interetset rate of subject2 is"+RateBLL.getRate(subject2));
+			System.out.println("The interetset rate of subject3 is"+RateBLL.getRate(subject3));
+			System.out.println("The interetset rate of subject4 is"+RateBLL.getRate(subject4));
+			System.out.println("The interetset rate of subject5 is"+RateBLL.getRate(subject5));
+			System.out.println("The interetset rate of subject6 is"+RateBLL.getRate(subject6));
+			System.out.println("The interetset rate of subject7 is"+RateBLL.getRate(subject7));
+			System.out.println("The interetset rate of subject8 is"+RateBLL.getRate(subject8));
+			
 		} catch (RateException e) {
 			e.printStackTrace();
 		}
@@ -48,8 +49,8 @@ public class rate_test {
 	public void invaidTest() throws RateException {
 		int subject9 = 555;
 		int subject10 = 0;
-		rateBill.getRate(subject9);
-		rateBill.getRate(subject10);
+		RateBLL.getRate(subject9);
+		RateBLL.getRate(subject10);
 	}
 	
 	@Test
@@ -61,10 +62,10 @@ public class rate_test {
 		// r: rate
 		//public static double getPayment(double r, double n, double p, double f, boolean t)
 		
-		System.out.println("getPayment Test1:" + rateBill.getPayment(4,360,300000,0,false));
-		System.out.println("getPayment Test2:" + rateBill.getPayment(4,360,300000,60000,false));
-		System.out.println("getPayment Test4:" + rateBill.getPayment(4,360,300000,0,true));
-		System.out.println("getPayment Test3:" + rateBill.getPayment(4,360,300000,60000,true));
+		System.out.println("getPayment Test1:" + RateBLL.getPayment(4,360,300000,0,false));
+		System.out.println("getPayment Test2:" + RateBLL.getPayment(4,360,300000,60000,false));
+		System.out.println("getPayment Test4:" + RateBLL.getPayment(4,360,300000,0,true));
+		System.out.println("getPayment Test3:" + RateBLL.getPayment(4,360,300000,60000,true));
 
 	}
 
