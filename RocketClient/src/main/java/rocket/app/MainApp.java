@@ -1,5 +1,6 @@
 package rocket.app;
 
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.StringWriter;
@@ -9,6 +10,7 @@ import javax.swing.SwingUtilities;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
+import exceptions.RateException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -18,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -55,8 +58,11 @@ public class MainApp extends Application {
 		// START is executed by the Application framework after INIT
 		AnchorPane root = new AnchorPane();
 		Scene scene = new Scene(root, 1300, 500);
+		
+		
 
 		this.primaryStage = primaryStage;
+			
 		
 		Screen screen = Screen.getPrimary();
 		Rectangle2D bounds = screen.getVisualBounds();
@@ -66,13 +72,19 @@ public class MainApp extends Application {
 		primaryStage.setWidth(bounds.getWidth());
 		primaryStage.setHeight(bounds.getHeight());
 		
-		this.primaryStage.setTitle("Rocket");
+		this.primaryStage.setTitle("Rocket");		
 		this.primaryStage.setScene(scene);
+		
+		// add icon
+		//this.primaryStage.getIcons().add(new Image("file:resources/images/rocketIcon.png"));
+		//Toolkit.getDefaultToolkit().getImage(getClass().getResource("file:resources/images/rocketIcon.png"));
+		
 		this.primaryStage.show();
 		
 		showRocketMenu();
 		
 	}
+
 	
 	public void StartHubAndClient()
 	{
@@ -152,6 +164,10 @@ public class MainApp extends Application {
 				} 
 				else if (message instanceof Object) {
 				}
+//				else if (message instanceof RateException){
+//					rController.HandleRateException();
+//					
+//				}
 			});
 		}
 

@@ -10,8 +10,7 @@ import rocketDomain.RateDomainModel;
 public class RateBLL {
 
 	private static RateDAL _RateDAL = new RateDAL();
-	private static double OneRate;
-
+	
 	public static double getRate(int GivenCreditScore) throws RateException{
 		// TODO - RocketBLL RateBLL.getRate - make sure you throw any exception
 
@@ -24,18 +23,24 @@ public class RateBLL {
 		// exception.. if so, send the exception back to the client
 
 		ArrayList<RateDomainModel> rates = RateDAL.getAllRates();
+		
+		double OneRate = 0;
 
-		if (GivenCreditScore < rates.get(0).getiMinCreditScore()) {
-		 System.out.println("Sorry, you have a too low credit score");		 
-		 throw new RateException(null);
-		 }
-		
-		
+
+//		if (GivenCreditScore < rates.get(0).getiMinCreditScore()) {
+//		 System.out.println("Sorry, you have a too low credit score");		 
+//		 throw new RateException(null);
+//		
+//		 }			
 
 		for (RateDomainModel r : rates) {
 			if (GivenCreditScore >= r.getiMinCreditScore()) {
 				OneRate = r.getdInterestRate();
 			}
+		}
+		
+		if (OneRate == 0){
+			throw new RateException(null);	
 		}
 	
 	// TODO - RocketBLL RateBLL.getRate

@@ -100,7 +100,7 @@ public class MortgageController {
 		LoanRequest lq = new LoanRequest();
 		// TODO - RocketClient.RocketMainController
 		// set the loan request details... rate, term, amount, credit score,
-		// downpayment
+		// down payment
 		// I've created you an instance of lq... execute the setters in lq
 
 		int creditScore = Integer.parseInt(txtCreditScore.getText());
@@ -162,4 +162,7 @@ public class MortgageController {
 		}
 
 	}
+//	public void HandleRateException(){		
+//		errorMessageLabel.setText("Sorry, Your crdit score is too low.");
+//	}
 }

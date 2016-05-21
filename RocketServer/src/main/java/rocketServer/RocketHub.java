@@ -2,6 +2,7 @@ package rocketServer;
 
 import java.io.IOException;
 
+import exceptions.RateException;
 import netgame.common.Hub;
 import rocketBase.RateBLL;
 import rocketData.LoanRequest;
@@ -39,16 +40,13 @@ public class RocketHub extends Hub {
 				double r = rocketBase.RateBLL.getRate(lq.getiCreditScore())/1200;
 				double n = lq.getiTerm();
 				double p = lq.getdAmount()-lq.getiDownPayment();
-				//double f = p * Math.pow((1 + r / 100), n);
 				double f = 0;
 				boolean t = false;
 				double PMT = rocketBase.RateBLL.getPayment(r, n, p, f, t);
 				lq.setdPayment(Math.abs(PMT));				
 
-			} catch (Exception e) {
-				// System.out.println("Error!");
-				// message.appendText("Error-Invalid Input");
-				sendToAll("Error");
+			} catch (RateException e) {
+				sendToAll(e);
 			}
 
 			sendToAll(lq);
